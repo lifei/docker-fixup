@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-sed -i 's/http:\/\/archive\.ubuntu\.com\/ubuntu\//http:\/\/mirrors.sohu.com\/ubuntu\//' /etc/apt/sources.list && \
-sed -i 's/deb-src/# deb-src/' /etc/apt/sources.list && \
-mkdir /tmp/fixup && cd /tmp/fixup && \
-curl -fSL -o master.tar.gz "https://github.com/lifei/docker-fixup/archive/master.tar.gz" && \
-tar zxf master.tar.gz && \
+sed -i 's/httpredir.debian.org/mirrors.163.com/' /etc/apt/sources.list
+sed -i 's/deb-src/# deb-src/' /etc/apt/sources.list
+mkdir /tmp/fixup && \
+curl -fsSL -o /tmp/fixup/master.tar.gz "https://github.com/lifei/docker-fixup/archive/master.tar.gz" && \
+tar zxf /tmp/fixup/master.tar.gz -C /tmp/fixup && \
 mv docker-fixup-master/scripts /bd_build && \
 /bd_build/prepare-debian.sh
 /bd_build/system_services.sh && \
